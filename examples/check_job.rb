@@ -5,10 +5,9 @@ require File.dirname(__FILE__) + "/common"
 @job_ids.each do |job_id|  
   status_key = interpolate_job_id(@keys[:job_status], job_id)
   job_key    = interpolate_job_id(@keys[:user_job], job_id)
-  status     = @redis.HGETALL(status_key)
+  status     = @redis.HGET(status_key, :perc)
 
   puts "Job ##{job_id} status: #{status}"
-  
   if status == 100
     # rebuild connection
     conn = Marshal.load(@redis.GET(job_key))
