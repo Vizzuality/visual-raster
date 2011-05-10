@@ -14,7 +14,7 @@ require File.dirname(__FILE__) + "/common"
     conn = Marshal.load(@redis.GET(job_key)).attach
     
     # echo result
-    puts conn.eval("x").to_ruby
+    puts conn.eval("x").to_s
     
     # remove job from set of user jobs
     @redis.SREM(@keys[:user_jobs], job_id)
