@@ -11,10 +11,7 @@ require File.dirname(__FILE__) + "/common"
   
   if status.to_i == 100
     # rebuild connection
-    conn = Marshal.load(@redis.GET(job_key))
-
-    # connect
-    conn.attach
+    conn = Marshal.load(@redis.GET(job_key)).attach
     
     # echo result
     puts conn.eval("x").to_ruby
