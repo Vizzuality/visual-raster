@@ -5,7 +5,7 @@ require File.dirname(__FILE__) + "/common"
 @job_ids.each do |job_id|  
   status_key = interpolate_job_id(@keys[:job_status], job_id)
   job_key    = interpolate_job_id(@keys[:user_job], job_id)
-  status     = @redis.HGET(status_key, :perc)
+  status     = @redis.HGETALL(status_key)
 
   puts "Job ##{job_id} status: #{status}"
   
