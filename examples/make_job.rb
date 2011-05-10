@@ -13,3 +13,4 @@ connection = Marshal.dump(s)
 @redis.SADD(@keys[:user_jobs], @pk)
 
 # 4. job done and posted to R.
+puts "job made: #{@pk}"

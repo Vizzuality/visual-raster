@@ -1,7 +1,7 @@
 VisualRaster 
 ============
 
-proof of concept of a asynchronous approach to R data processing using Redis as a message bus
+Proof of concept of a asynchronous approach to R data processing using Redis as a message bus.
 
 1. Redis has a primary key store
 2. All R calls from Ruby include primary key as the first argument
@@ -15,7 +15,7 @@ R/Redis datasources
 r:users:user_id:job_pk 	- KvP  => 0..n (incrementing key)
 r:users:user_id:jobs   	- List => [1,2,3,4,5...] (job_pks)
 r:users:user_id:jobs:1	- KvP  => serialised rserve connection object
-r:jobs:job_id:status 		- Hash => {:err => "", :status => "", :perc => 0..100}
+r:jobs:jobid:1 		      - Hash => {:err => "", :status => "", :perc => 0..100}
 
 Notes
 ------
