@@ -8,7 +8,8 @@ require File.dirname(__FILE__) + "/common"
   status     = @redis.HGET(status_key, :perc)
 
   puts "Job ##{job_id} status: #{status}"
-  if status == 100
+  
+  if status.to_i == 100
     # rebuild connection
     conn = Marshal.load(@redis.GET(job_key))
 
@@ -26,5 +27,8 @@ require File.dirname(__FILE__) + "/common"
     
     # destroy marshalled connection
     @redis.DEL(job_key)    
+    
+    # note to user
+    puts "job completed"
   end  
 end
