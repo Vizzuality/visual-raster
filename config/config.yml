@@ -1,0 +1,4 @@
+server:
+  hostname: ec2-204-236-222-14.compute-1.amazonaws.com
+  port_number: 6311
+    

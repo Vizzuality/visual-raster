@@ -1,1 +1,22 @@
-Holding pen for initial ruby code for Rserve project 
+VisualRaster 
+============
+
+1. Redis has a primary key store
+2. All R calls from Ruby include primary key as the first argument
+3. R call is disconnected as soon as it is made, and the connection is serialised into redis in a set specific to a user_id
+4. R updates a status hash that is related to the primary key for the 
+5. client calls ruby to check if it is done.
+6. ruby checks status table, if status table is 100, rebuild marshalled connection
+
+R/Redis datasources
+---------------------
+r:users:user_id:job_pk 	- KvP  => 0..n (incrementing key)
+r:users:user_id:jobs   	- List => [1,2,3,4,5...] (job_pks)
+r:users:user_id:jobs:1	- KvP  => serialised rserve connection object
+r:jobs:job_id:status 		- Hash => {:err => "", :status => "", :perc => 0..100}
+
+Notes
+------
+* rredis needs to have pub/sub commands implemented
+* possible async generates too many rserve requests on the R server. We'll need to overcome this with a proxy.
+
